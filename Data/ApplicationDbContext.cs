@@ -1,9 +1,11 @@
 // Data/ApplicationDbContext.cs
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore; // Asegúrate de que esta línea esté presente
 
 namespace BlazorQuizApp.Data
 {
-    public class ApplicationDbContext : DbContext
+    // Modifica esta línea para implementar IDataProtectionKeyContext
+    public class ApplicationDbContext : DbContext, IDataProtectionKeyContext 
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -12,6 +14,10 @@ namespace BlazorQuizApp.Data
 
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
+        
+        // ¡Añade esta línea para el DbSet de Data Protection Keys!
+        public DbSet<DataProtectionKey> DataProtectionKeys { get; set; } 
+
         // Agrega más DbSets según tus necesidades para usuarios, etc.
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -36,7 +42,7 @@ namespace BlazorQuizApp.Data
     {
         public int Id { get; set; }
         public string Text { get; set; }
-        public ICollection<Answer> Answers { get; set; }
+        public ICollection<Answer> Answers { get; set; } = new List<Answer>(); // Inicializar la colección para evitar nulls
     }
 
     // Data/Answer.cs
@@ -46,6 +52,6 @@ namespace BlazorQuizApp.Data
         public int QuestionId { get; set; }
         public string Text { get; set; }
         public bool IsCorrect { get; set; }
-        public Question Question { get; set; }
+        public Question? Question { get; set; } // Puede ser nulo en algunos escenarios de EF
     }
 }

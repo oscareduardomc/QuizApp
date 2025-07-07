@@ -23,8 +23,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    dbContext.Database.Migrate(); // Aplica migraciones pendientes
-    // Puedes agregar lógica para sembrar datos iniciales si no lo haces en OnModelCreating
+    // dbContext.Database.Migrate(); // Migrations are now applied via `dotnet ef database update` during deployment
 }
 
 app.Run();

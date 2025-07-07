@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BlazorQuizApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1151a425b3a370ffd83d7fb099dc5e1ed82352f1")]
 [assembly: System.Reflection.AssemblyProductAttribute("BlazorQuizApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BlazorQuizApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
